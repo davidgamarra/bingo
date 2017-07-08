@@ -4,6 +4,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class BingoActivity extends AppCompatActivity {
@@ -31,7 +33,7 @@ public class BingoActivity extends AppCompatActivity {
     };
 
     private ArrayList<Integer> mynum = new ArrayList<>();
-
+    private TextToSpeech tts;
     private TextView tvNumber;
 
     @Override
@@ -45,6 +47,14 @@ public class BingoActivity extends AppCompatActivity {
                 .setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
         tvNumber = (TextView) findViewById(R.id.tvNumber);
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    tts.setLanguage(new Locale("es", "ES"));
+                }
+            }
+        });
         init();
     }
 
@@ -75,6 +85,7 @@ public class BingoActivity extends AppCompatActivity {
             Random r = new Random();
             int n = r.nextInt(mynum.size());
             int num = mynum.get(n);
+            tts.speak("El "+num, TextToSpeech.QUEUE_FLUSH, null);
             mynum.remove(n);
             tvNumber.setText(num+"");
             TextView tv = (TextView) findViewById(8000+num);
