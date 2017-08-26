@@ -59,4 +59,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startCard(View view) {
+        Intent intent = new Intent(this, CardActivity.class);
+        startActivity(intent);
+    }
+
 }

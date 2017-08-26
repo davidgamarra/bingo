@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:background="@color/colorPrimary"
+            android:onClick="startCard"
             android:text="@string/button_player"
             android:textColor="@color/common_google_signin_btn_text_dark_default" />
     </LinearLayout>

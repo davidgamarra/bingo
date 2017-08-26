@@ -36,7 +36,10 @@
         <activity
             android:name=".BingoActivity"
             android:label="@string/title_activity_bingo"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CardActivity"
+            android:label="@string/title_activity_card"></activity>
     </application>
 
 </manifest>
