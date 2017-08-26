@@ -216,11 +216,23 @@ public class CardActivity extends AppCompatActivity {
             LinearLayout linearLayout = new LinearLayout(this);
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             for(int j = 0; j < numbers[i].length; j++) {
-                TextView textView = new TextView(this);
+                final TextView textView = new TextView(this);
                 textView.setId(8000+numbers[i][j]);
                 if(numbers[i][j] > 0) {
                     textView.setText(numbers[i][j] + "");
                     textView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorLight));
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(textView.getTag() == null) {
+                                textView.setBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.colorGreen));
+                                textView.setTag(true);
+                            } else {
+                                textView.setBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.colorLight));
+                                textView.setTag(null);
+                            }
+                        }
+                    });
                 } else {
                     textView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimaryGray));
                 }
@@ -231,7 +243,6 @@ public class CardActivity extends AppCompatActivity {
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 textView.setTextColor(ContextCompat.getColor(this, R.color.colorDark));
                 textView.setPadding(0, 40, 0, 40);
-                //TODO: onClick Event to change color
                 linearLayout.addView(textView);
             }
             subLayout.addView(linearLayout);
