@@ -4,6 +4,8 @@
     <string name="action_settings">Ajustes</string>
     <string name="action_clean_table">Limpiar cartones</string>
     <string name="action_add_card">Añadir cartón</string>
+    <string name="action_auto_play">Reproducción automática</string>
+    <string name="action_stop_play">Detener reproducción</string>
 
     <string name="hello_world">Hola mundo!</string>
     <string name="button_broadcaster">Sorteo</string>
@@ -17,5 +19,7 @@
 
     <string name="title_activity_bingo">Sorteo</string>
     <string name="title_activity_card">Cartones</string>
+
+    <string name="play_audio">El </string>
 
 </resources>

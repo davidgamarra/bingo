@@ -4,6 +4,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -35,6 +36,10 @@ public class BingoActivity extends AppCompatActivity {
     private TextToSpeech tts;
     private TextView tvNumber;
 
+    private int PLAY_SPEED = 5000;
+    private Handler h;
+    private boolean isRunning = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +62,13 @@ public class BingoActivity extends AppCompatActivity {
         init();
     }
 
+    @Override
+    protected void onDestroy() {
+        if(isRunning) {
+            isRunning = false;
+        }
+        super.onDestroy();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,23 +84,46 @@ public class BingoActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_auto_play) {
+            if(!isRunning) {
+                isRunning = true;
+                h = new Handler();
+                h.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isRunning) {
+                            play();
+                            h.postDelayed(this, PLAY_SPEED);
+                        }
+                    }
+                }, PLAY_SPEED);
+            }
             return true;
+        } else if(id == R.id.action_stop_play) {
+            if(isRunning) {
+                isRunning = false;
+            }
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void drawNumber(View view) {
+    public void play() {
         if(mynum.size() > 0) {
             Random r = new Random();
             int n = r.nextInt(mynum.size());
             int num = mynum.get(n);
-            tts.speak("El "+num, TextToSpeech.QUEUE_FLUSH, null);
+            tts.speak(getResources().getString(R.string.play_audio)+num, TextToSpeech.QUEUE_FLUSH, null);
             mynum.remove(n);
             tvNumber.setText(num+"");
             TextView tv = (TextView) findViewById(8000+num);
             tv.setBackgroundResource(R.drawable.miniball);
+        }
+    }
+
+    public void drawNumber(View view) {
+        if(!isRunning) {
+            play();
         }
     }
 
