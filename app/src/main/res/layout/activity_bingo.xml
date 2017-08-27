@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bgim"
     android:onClick="drawNumber"
-    tools:context="com.devgamarra.bingo.BingoActivity">
+    tools:context="com.devgamarra.bingo8.BingoActivity">
 
     <!-- view for AdMob Banner Ad -->
     <RelativeLayout

@@ -1,4 +1,4 @@
-package com.devgamarra.bingo;
+package com.devgamarra.bingo8;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;

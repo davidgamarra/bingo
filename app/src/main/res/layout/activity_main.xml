@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgim"
-    tools:context="com.devgamarra.bingo.MainActivity">
+    tools:context="com.devgamarra.bingo8.MainActivity">
 
     <!-- view for AdMob Banner Ad -->
     <com.google.android.gms.ads.AdView

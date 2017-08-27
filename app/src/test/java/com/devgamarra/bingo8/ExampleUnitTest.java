@@ -1,4 +1,4 @@
-package com.devgamarra.bingo;
+package com.devgamarra.bingo8;
 
 import org.junit.Test;
 
